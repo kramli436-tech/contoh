@@ -135,6 +135,147 @@
             &copy; 2025. <b>Lilevy.ae</b> All Rights Reserved.
         </div>
     </div>
-    
+
+    <!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Komentar</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f3f5f7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    .comment-box {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 450px;
+    }
+
+    .comment-box h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .comment-box input, 
+    .comment-box textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .comment-box button {
+      width: 100%;
+      padding: 10px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.3s;
+    }
+
+    .comment-box button:hover {
+      background: #43a047;
+    }
+
+    .comments-display {
+      margin-top: 30px;
+      max-width: 450px;
+      width: 100%;
+    }
+
+    .comment {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .comment h4 {
+      margin: 0 0 5px 0;
+      color: #333;
+    }
+
+    .comment p {
+      margin: 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .comment small {
+      display: block;
+      margin-top: 5px;
+      color: #888;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="comment-box">
+    <h2>Tinggalkan Komentar</h2>
+    <form id="commentForm">
+      <label for="name">Nama:</label>
+      <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
+
+      <label for="comment">Komentar:</label>
+      <textarea id="comment" name="comment" rows="4" placeholder="Tulis komentar Anda..." required></textarea>
+
+      <button type="submit">Kirim Komentar</button>
+    </form>
+  </div>
+
+  <div class="comments-display" id="commentsDisplay">
+    <h3>Komentar:</h3>
+  </div>
+
+  <script>
+    const form = document.getElementById('commentForm');
+    const commentsDisplay = document.getElementById('commentsDisplay');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const commentText = document.getElementById('comment').value.trim();
+
+      if (name && commentText) {
+        const commentElement = document.createElement('div');
+        commentElement.classList.add('comment');
+        const currentTime = new Date().toLocaleString('id-ID');
+
+        commentElement.innerHTML = `
+          <h4>${name}</h4>
+          <p>${commentText}</p>
+          <small>Dikirim pada: ${currentTime}</small>
+        `;
+
+        commentsDisplay.appendChild(commentElement);
+
+        // Reset form
+        form.reset();
+      }
+    });
+  </script>
+
 </body>
 </html>
